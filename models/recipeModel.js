@@ -26,9 +26,37 @@ const recipeSchema= new mongoose.Schema({
         type:String,
         required:true
     },
+    recipecategory:{
+        type:String,
+        required:true
+    },
     userId:{
         type:String,
         required:true
+    },
+    userName:{
+        type:String,
+        required:true
+    },
+    userProfilePic:{
+        type:String,
+        default:""
+    },
+    likes:{
+        type:Number,
+        default:0
+    },
+    dislikes:{
+        type:Number,
+        default:0
+    },
+    likedUsers:{
+        type:[String],
+        default:[]
+    },
+    dislikedUsers:{
+        type:[String],
+        default:[]
     }
 })
 const recipe = mongoose.model('recipe',recipeSchema)

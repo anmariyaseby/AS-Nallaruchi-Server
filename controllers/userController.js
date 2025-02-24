@@ -1,5 +1,7 @@
 const users = require('../models/useModel')
 const jwt = require('jsonwebtoken')
+const recipe = require('../models/recipeModel')
+
 // register
 exports.registerController=async (req,res)=>{
     console.log(`inside register`);
@@ -55,7 +57,10 @@ exports.editUserController = async (req, res) => {
         );
 
         await updatedUser.save();
-        
+        await recipe.updateMany(
+            { userId: userId },  // Find recipes by userId
+            { $set: { userProfilePic: uploadProfilePic } } // Update profile picture
+        );  
         // Return updated user details in response
         res.status(200).json(updatedUser);
     } catch (err) {

@@ -23,4 +23,11 @@ router.put('/recipe/:id/edit',jwtMiddleware,multerMiddleware.single('recipephoto
 router.delete(`/recipe/:id`,jwtMiddleware,recipeController.deleteRecipeController)
 // edit userprofile
 router.put(`/edit-user`,jwtMiddleware,multerMiddleware.single('profilePic'),userController.editUserController)
+// get recipe by category
+router.get(`/:category`,recipeController.getRecipebycategory)
+// like recipe
+router.put('/recipe/:id/like', jwtMiddleware, recipeController.likeRecipe);
+// dislike recipe
+router.put('/recipe/:id/dislike', jwtMiddleware, recipeController.dislikeRecipe);
+
 module.exports=router
